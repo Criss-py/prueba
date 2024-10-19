@@ -1,0 +1,464 @@
+#:kivy 2.1.0
+
+<PantallaLogin>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: 0.9, 0.9, 0.9, 1  
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: '150dp'
+            Image:
+                source: 'icons/Login.png'
+                size_hint: None, None
+                size: '100dp', '100dp'
+                pos_hint: {'center_x': 0.5}
+
+        Label:
+            text: 'LOGIN'
+            font_size: 32
+            color: 0, 0, 0, 1
+
+        TextInput:
+            id: usuario
+            hint_text: 'Usuario'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (1, 1, 1, 1)
+
+        TextInput:
+            id: contrasena
+            hint_text: 'Contraseña'
+            password: True
+            size_hint_y: None
+            height: '44dp'
+            background_color: (1, 1, 1, 1)
+
+        Button:
+            text: 'Iniciar sesión'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1  
+            border: (16, 16, 16, 16)
+            on_press: app.login(usuario.text, contrasena.text)
+
+        Button:
+            text: 'Registrar Usuario'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1  
+            border: (16, 16, 16, 16)
+            on_press: app.manager_pantallas.current = 'registrar_cliente'
+
+        FloatLayout:
+            size_hint_y: None
+            height: '60dp'
+            Button:
+                size_hint: None, None
+                size: '44dp', '44dp'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                background_normal: ''
+                background_down: ''
+                on_press: app.ingreso_faceid_login()
+
+                Image:
+                    source: 'icons/face.jpg'
+                    size_hint: None, None
+                    size: '44dp', '44dp'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+<MenuAdmin>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: 0.9, 0.9, 0.9, 1  
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: 'Menú Administrador'
+            font_size: 32
+            color: 0, 0, 0, 1
+
+        Button:
+            text: 'Mostrar Tabla Proveedores'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1 
+            border: (16, 16, 16, 16)
+            on_press: print('Mostrar tabla de proveedores')
+
+        Button:
+            text: 'Mostrar Tabla Productos'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1  
+            border: (16, 16, 16, 16)
+            on_press: print('Mostrar tabla de productos')
+
+        Button:
+            text: 'Control de Usuarios'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1  
+            border: (16, 16, 16, 16)
+            on_press: print('Control de usuarios')
+
+        Button:
+            text: 'Regresar'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1  
+            border: (16, 16, 16, 16)
+            on_press: root.regresar()
+
+<MenuCliente>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: 0.9, 0.9, 0.9, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: 'Menú Cliente'
+            font_size: 32
+            color: 0, 0, 0, 1
+
+        Button:
+            text: 'Mostrar Productos Disponibles'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1 
+            border: (16, 16, 16, 16)
+            on_press: root.mostrar_productos()
+
+        Button:
+            text: 'Actualizar Datos'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1  
+            border: (16, 16, 16, 16)
+            on_press: root.manager.current = 'actualizar_datos'
+
+        Button:
+            text: 'Regresar'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1  
+            border: (16, 16, 16, 16)
+            on_press: root.regresar()
+
+<PantallaActualizarDatos>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: 0.1, 0.1, 0.1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '44dp'
+            Label:
+                text: 'Nombre'
+                size_hint_x: None
+                width: '100dp'
+            TextInput:
+                id: nombre
+                hint_text: 'Nombre'
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '44dp'
+            Label:
+                text: 'Apellido'
+                size_hint_x: None
+                width: '100dp'
+            TextInput:
+                id: apellido
+                hint_text: 'Apellido'
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '44dp'
+            Label:
+                text: 'Email'
+                size_hint_x: None
+                width: '100dp'
+            TextInput:
+                id: email
+                hint_text: 'Email'
+                readonly: True  # El email no editable
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '44dp'
+            Label:
+                text: 'Teléfono'
+                size_hint_x: None
+                width: '100dp'
+            TextInput:
+                id: telefono
+                hint_text: 'Teléfono'
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '44dp'
+            Label:
+                text: 'Rol'
+                size_hint_x: None
+                width: '100dp'
+            TextInput:
+                id: rol
+                hint_text: 'Rol'
+                readonly: True  # El rol no editable
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '44dp'
+            Label:
+                text: 'Contraseña'
+                size_hint_x: None
+                width: '100dp'
+            TextInput:
+                id: password
+                hint_text: 'Contraseña'
+                password: True 
+
+        Button:
+            text: 'Actualizar'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1  
+            border: (16, 16, 16, 16)
+            on_press: root.actualizar()
+
+        Button:
+            text: 'Cancelar'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.6, 0.2, 0.2, 1)
+            color: 1, 1, 1, 1  
+            border: (16, 16, 16, 16)
+            on_press: root.manager.current = 'cliente'
+
+
+<PantallaRegistrarCliente>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '44dp'
+            Label:
+                text: 'Nombre'
+                size_hint_x: None
+                width: '100dp'
+            TextInput:
+                id: nombre
+                hint_text: 'Nombre'
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '44dp'
+            Label:
+                text: 'Apellido'
+                size_hint_x: None
+                width: '100dp'
+            TextInput:
+                id: apellido
+                hint_text: 'Apellido'
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '44dp'
+            Label:
+                text: 'Email'
+                size_hint_x: None
+                width: '100dp'
+            TextInput:
+                id: email
+                hint_text: 'Email'
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '44dp'
+            Label:
+                text: 'Teléfono'
+                size_hint_x: None
+                width: '100dp'
+            TextInput:
+                id: telefono
+                hint_text: 'Teléfono'
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '44dp'
+            Label:
+                text: 'Contraseña'
+                size_hint_x: None
+                width: '100dp'
+            TextInput:
+                id: password
+                hint_text: 'Contraseña'
+                password: True
+
+        Button:
+            text: 'Tomar Foto'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1  
+            border: (16, 16, 16, 16)
+            on_press: root.tomar_foto()
+
+        Button:
+            text: 'Registrar Usuario'
+            size_hint_y: None
+            height: '44dp'
+            background_color: (0.2, 0.6, 1, 1)
+            color: 1, 1, 1, 1 
+            border: (16, 16, 16, 16)
+            on_press: root.registrar_usuario(nombre.text, apellido.text, email.text, telefono.text, password.text)
+
+        Button:
+            text: 'Regresar'
+            on_press: app.manager_pantallas.current = 'login'
+
+<PantallaProductos>:
+    productos_list: productos_list_grid
+    BoxLayout:
+        orientation: 'vertical'
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 1, 1 
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text: 'Productos Disponibles'
+                color: 1, 1, 1, 1 
+                font_size: '20sp'
+                halign: 'center'
+                valign: 'middle'
+                size_hint_x: None
+                width: self.texture_size[0]
+                pos_hint: {'center_x': 0.5}
+
+        ScrollView:
+            size_hint_y: 0.8
+            GridLayout:
+                id: productos_list_grid
+                cols: 4 
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [10, 10, 10, 10]  
+                spacing: 10 
+
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1  
+                    Line:
+                        width: 1
+                        rectangle: (self.x, self.y, self.width, self.height)
+
+                Label:
+                    text: 'No.'
+                    size_hint_y: None
+                    height: 40
+                    bold: True
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  
+                        Line:
+                            width: 1
+                            rectangle: (self.x, self.y, self.width, self.height)
+                Label:
+                    text: 'Nombre'
+                    size_hint_y: None
+                    height: 40
+                    bold: True
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1  
+                        Line:
+                            width: 1
+                            rectangle: (self.x, self.y, self.width, self.height)
+                Label:
+                    text: 'Precio'
+                    size_hint_y: None
+                    height: 40
+                    bold: True
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1 
+                        Line:
+                            width: 1
+                            rectangle: (self.x, self.y, self.width, self.height)
+                Label:
+                    text: 'Proveedor'
+                    size_hint_y: None
+                    height: 40
+                    bold: True
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1 
+                        Line:
+                            width: 1
+                            rectangle: (self.x, self.y, self.width, self.height)
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            Button:
+                text: 'Regresar'
+                on_press: root.regresar()
